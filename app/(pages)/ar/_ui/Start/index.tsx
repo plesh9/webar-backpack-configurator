@@ -29,7 +29,7 @@ const StartArButton: FC<Props> = ({ gl }) => {
     }
 
     return (
-        <Button className='w-fit self-center' onClick={startAR}>
+        <Button className='w-fit shrink-0 self-center' onClick={startAR}>
             See In Real Life
         </Button>
     )

@@ -3,7 +3,7 @@ import { OrbitControls } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
 import { XR, createXRStore } from '@react-three/xr'
 import { useSearchParams } from 'next/navigation'
-import { useState } from 'react'
+import { Suspense, useState } from 'react'
 import type * as THREE from 'three'
 import BackpackPrimitive from '@features/BackpackPrimitive'
 import type {
@@ -22,22 +22,27 @@ const Page = () => {
     const xrStore = createXRStore()
 
     return (
-        <div className='flex h-screen grow flex-col overflow-hidden p-8'>
-            <Canvas
-                camera={{ position: [0, 0, 1], fov: 75 }}
-                onCreated={({ gl }) => setGl(gl)}
-            >
-                <XR store={xrStore}>
-                    <ambientLight intensity={1} />
-                    <directionalLight position={[5, 5, 5]} intensity={2.5} />
-                    <BackpackPrimitive
-                        color={color}
-                        hardware={hardware}
-                        material={material}
-                    />
-                    <OrbitControls enableZoom={false} />
-                </XR>
-            </Canvas>
+        <div className='flex h-dvh grow flex-col overflow-auto p-8'>
+            <Suspense>
+                <Canvas
+                    camera={{ position: [0, 0, 1], fov: 75 }}
+                    onCreated={({ gl }) => setGl(gl)}
+                >
+                    <XR store={xrStore}>
+                        <ambientLight intensity={1} />
+                        <directionalLight
+                            position={[5, 5, 5]}
+                            intensity={2.5}
+                        />
+                        <BackpackPrimitive
+                            color={color}
+                            hardware={hardware}
+                            material={material}
+                        />
+                        <OrbitControls enableZoom={false} />
+                    </XR>
+                </Canvas>
+            </Suspense>
             <StartArButton gl={gl} />
         </div>
     )
