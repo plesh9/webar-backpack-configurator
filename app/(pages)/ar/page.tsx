@@ -23,26 +23,28 @@ const Page = () => {
 
     return (
         <div className='flex h-dvh grow flex-col overflow-auto p-8'>
-            <Suspense>
-                <Canvas
-                    camera={{ position: [0, 0, 1], fov: 75 }}
-                    onCreated={({ gl }) => setGl(gl)}
-                >
-                    <XR store={xrStore}>
-                        <ambientLight intensity={1} />
-                        <directionalLight
-                            position={[5, 5, 5]}
-                            intensity={2.5}
-                        />
-                        <BackpackPrimitive
-                            color={color}
-                            hardware={hardware}
-                            material={material}
-                        />
-                        <OrbitControls enableZoom={false} />
-                    </XR>
-                </Canvas>
-            </Suspense>
+            <div className='flex grow flex-col'>
+                <Suspense>
+                    <Canvas
+                        camera={{ position: [0, 0, 1], fov: 75 }}
+                        onCreated={({ gl }) => setGl(gl)}
+                    >
+                        <XR store={xrStore}>
+                            <ambientLight intensity={1} />
+                            <directionalLight
+                                position={[5, 5, 5]}
+                                intensity={2.5}
+                            />
+                            <BackpackPrimitive
+                                color={color}
+                                hardware={hardware}
+                                material={material}
+                            />
+                            <OrbitControls enableZoom={false} />
+                        </XR>
+                    </Canvas>
+                </Suspense>
+            </div>
             <StartArButton gl={gl} />
         </div>
     )
