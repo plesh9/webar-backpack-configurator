@@ -79,6 +79,8 @@ const eslintConfig = [
             '@next/next/no-img-element': 'error',
             'react-hooks/rules-of-hooks': 'off',
             'unicorn/prefer-global-this': 'off',
+            'unicorn/prefer-default-parameters': 'off',
+            'unicorn/no-null': 'off',
             'func-style': 'error',
             'no-debugger': 'warn',
             'no-empty': 'error',

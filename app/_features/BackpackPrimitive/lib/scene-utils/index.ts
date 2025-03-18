@@ -4,11 +4,15 @@ import type {
     MaterialType
 } from '@pages/(backpack-view)/_state/useConfiguratorStore'
 
-export const getMaterialTextures = (material: MaterialType) => ({
-    map: `/models/backpack/${material.toLowerCase()}_baseColor.jpg`,
-    normalMap: `/models/backpack/${material.toLowerCase()}_normal.jpg`,
-    roughnessMap: `/models/backpack/${material.toLowerCase()}_occlusionRoughnessMetallic.jpg`
-})
+export const getMaterialTextures = (material: MaterialType) => {
+    const saveMaterial: MaterialType = material ?? 'LEATHER'
+
+    return {
+        map: `/models/backpack/${saveMaterial.toLowerCase()}_baseColor.jpg`,
+        normalMap: `/models/backpack/${saveMaterial.toLowerCase()}_normal.jpg`,
+        roughnessMap: `/models/backpack/${saveMaterial.toLowerCase()}_occlusionRoughnessMetallic.jpg`
+    }
+}
 
 export const getBodyColor = (color: ColorType): string => {
     switch (color) {

@@ -1,12 +1,16 @@
 import { useLayoutEffect } from 'react'
 import * as THREE from 'three'
-import useConfiguratorStore from '@pages/(backpack-view)/_state/useConfiguratorStore'
+import type {
+    ColorType,
+    HardwareType
+} from '@pages/(backpack-view)/_state/useConfiguratorStore'
 import { getBodyColor, getHardwareColor } from '../../scene-utils'
 
-const useBackpackColor = (scene: THREE.Group<THREE.Object3DEventMap>) => {
-    const color = useConfiguratorStore((state) => state.color)
-    const hardware = useConfiguratorStore((state) => state.hardware)
-
+const useBackpackColor = (
+    scene: THREE.Group<THREE.Object3DEventMap>,
+    color: ColorType,
+    hardware: HardwareType
+) => {
     useLayoutEffect(() => {
         scene.traverse((obj) => {
             const isValidObj =

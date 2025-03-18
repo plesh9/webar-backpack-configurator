@@ -3,6 +3,7 @@ import { QRCodeCanvas } from 'qrcode.react'
 import type { FC } from 'react'
 import { Dialog, DialogContent, DialogTitle } from '@shared/ui/Dialog'
 import LineHorizontal from '@shared/ui/LineHorizontal'
+import useArParams from '../../hooks/useArParams'
 
 interface Props {
     isOpen: boolean
@@ -10,6 +11,8 @@ interface Props {
 }
 
 const ArQrCodeModal: FC<Props> = ({ isOpen, close }) => {
+    const arParams = useArParams()
+
     return (
         <Dialog open={isOpen} onOpenChange={close}>
             <DialogContent className='text-primary'>
@@ -28,7 +31,7 @@ const ArQrCodeModal: FC<Props> = ({ isOpen, close }) => {
                 >
                     <QRCodeCanvas
                         fgColor='#4169E1'
-                        value={`${globalThis?.location?.origin}/ar`}
+                        value={`${globalThis?.location?.origin}/ar?${arParams}`}
                         size={130}
                     />
                 </div>

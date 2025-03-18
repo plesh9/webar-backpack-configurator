@@ -1,11 +1,13 @@
 import { useTexture } from '@react-three/drei'
 import { useLayoutEffect } from 'react'
 import * as THREE from 'three'
-import useConfiguratorStore from '@pages/(backpack-view)/_state/useConfiguratorStore'
+import type { MaterialType } from '@pages/(backpack-view)/_state/useConfiguratorStore'
 import { getMaterialTextures } from '../../scene-utils'
 
-const useBackpackMaterial = (scene: THREE.Group<THREE.Object3DEventMap>) => {
-    const material = useConfiguratorStore((state) => state.material)
+const useBackpackMaterial = (
+    scene: THREE.Group<THREE.Object3DEventMap>,
+    material: MaterialType
+) => {
     const textures = useTexture(getMaterialTextures(material))
 
     useLayoutEffect(() => {
